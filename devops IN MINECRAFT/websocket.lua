@@ -1,0 +1,3 @@
+-- Websocket sync of filesystems to specific CC computers so you can fast debug
+-- Allow remote run and piping of output over websocket
+-- Shell

@@ -1,0 +1,8 @@
+* Steps
+** Second stage
+This should be fairly similar to bootstrapping *however* this can be changed
+easier as it will be hosted on git
+** Final stage
+Constant checking for updates, deploying etc.
+
+Websocket debugging?

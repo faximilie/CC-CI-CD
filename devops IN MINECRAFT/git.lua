@@ -1,0 +1,3 @@
+-- Clone entire git repo
+-- Allow branches/versions
+-- Provide mechanisms to update against repo (os.timers?)
