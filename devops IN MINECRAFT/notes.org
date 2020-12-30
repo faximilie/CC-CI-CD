@@ -10,6 +10,7 @@ Seems that github raw has a 300 second cache that can't be bypassed, so best to
 use base64 decoding of the git API
 *** API for crawling repo
 
+We can add ~?ref={sha1|branch|tag}~
 #+begin_src restclient
   GET https://api.github.com/repos/faximilie/CC-CI-CD/contents/
   User-Agent: Curl
