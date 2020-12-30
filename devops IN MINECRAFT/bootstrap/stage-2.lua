@@ -1,4 +1,4 @@
-json = require "/libs/json.lua"
-base64 = require "/libs/base64.lua"
+json = require "/libs/json"
+base64 = require "/libs/base64"
 
 print('wow')
