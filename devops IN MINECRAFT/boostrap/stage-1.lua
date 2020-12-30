@@ -1,13 +1,14 @@
 -- Pull stage-2.lua and required libraries
 -- Run them
 
+-- Files start with / to make absolute file paths cleaner to implement
 files = {
-  'bootstrap/stage-2.lua',
-  'libs/base64.lua',
-  'libs/json.lua'
+  '/bootstrap/stage-2.lua',
+  '/libs/base64.lua',
+  '/libs/json.lua'
 }
 
-git_url = 'https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/'
+gitUrl = 'https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT'
 
 for file in files do
   url = git_url . file
