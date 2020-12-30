@@ -6,3 +6,194 @@ easier as it will be hosted on git
 Constant checking for updates, deploying etc.
 
 Websocket debugging?
+Seems that github raw has a 300 second cache that can't be bypassed, so best to
+use base64 decoding of the git API
+*** API for crawling repo
+
+#+begin_src restclient
+  GET https://api.github.com/repos/faximilie/CC-CI-CD/contents/
+  User-Agent: Curl
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+[
+  {
+    "name": "devops IN MINECRAFT",
+    "path": "devops IN MINECRAFT",
+    "sha": "a56dd96b7f2ab283ec9fd38a2845d7d9bfd4f759",
+    "size": 0,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/tree/main/devops%20IN%20MINECRAFT",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/trees/a56dd96b7f2ab283ec9fd38a2845d7d9bfd4f759",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/trees/a56dd96b7f2ab283ec9fd38a2845d7d9bfd4f759",
+      "html": "https://github.com/faximilie/CC-CI-CD/tree/main/devops%20IN%20MINECRAFT"
+    }
+  }
+]
+// GET https://api.github.com/repos/faximilie/CC-CI-CD/contents/
+// HTTP/1.1 200 OK
+// date: Tue, 29 Dec 2020 12:15:18 GMT
+// content-type: application/json; charset=utf-8
+// server: GitHub.com
+// status: 200 OK
+// cache-control: public, max-age=60, s-maxage=60
+// vary: Accept, Accept-Encoding, Accept, X-Requested-With, Accept-Encoding
+// etag: W/"dead84752bee7e5947f81e456f0cb3167b8496ec"
+// last-modified: Tue, 29 Dec 2020 11:51:34 GMT
+// x-github-media-type: github.v3; format=json
+// access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset
+// access-control-allow-origin: *
+// strict-transport-security: max-age=31536000; includeSubdomains; preload
+// x-frame-options: deny
+// x-content-type-options: nosniff
+// x-xss-protection: 1; mode=block
+// referrer-policy: origin-when-cross-origin, strict-origin-when-cross-origin
+// content-security-policy: default-src 'none'
+// X-Ratelimit-Limit: 60
+// X-Ratelimit-Remaining: 52
+// X-Ratelimit-Reset: 1609245615
+// X-Ratelimit-Used: 8
+// Accept-Ranges: bytes
+// Content-Length: 280
+// X-GitHub-Request-Id: 9A70:7A84:2E4B7ED:342D800:5FEB1DD5
+// Request duration: 0.432637s
+#+END_SRC
+
+#+begin_src restclient
+  GET https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT?ref=main
+  User-Agent: Curl
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+[
+  {
+    "name": "bootstrap.lua",
+    "path": "devops IN MINECRAFT/bootstrap.lua",
+    "sha": "78268b48b6da16650148713c107ae89012928c23",
+    "size": 1364,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/bootstrap.lua?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/bootstrap.lua",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/78268b48b6da16650148713c107ae89012928c23",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/bootstrap.lua",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/bootstrap.lua?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/78268b48b6da16650148713c107ae89012928c23",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/bootstrap.lua"
+    }
+  },
+  {
+    "name": "git.lua",
+    "path": "devops IN MINECRAFT/git.lua",
+    "sha": "a59bc4c719e0751af441464be2872a1a1442235c",
+    "size": 110,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/git.lua?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/git.lua",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/a59bc4c719e0751af441464be2872a1a1442235c",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/git.lua",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/git.lua?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/a59bc4c719e0751af441464be2872a1a1442235c",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/git.lua"
+    }
+  },
+  {
+    "name": "json.lua",
+    "path": "devops IN MINECRAFT/json.lua",
+    "sha": "711ef7861961944c593948d57c74c477a541598a",
+    "size": 9638,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/json.lua?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/json.lua",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/711ef7861961944c593948d57c74c477a541598a",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/json.lua",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/json.lua?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/711ef7861961944c593948d57c74c477a541598a",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/json.lua"
+    }
+  },
+  {
+    "name": "notes.org",
+    "path": "devops IN MINECRAFT/notes.org",
+    "sha": "b6ad5b619d7f4848db1dd049fe3b1891889f6fb9",
+    "size": 219,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/notes.org?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/notes.org",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/b6ad5b619d7f4848db1dd049fe3b1891889f6fb9",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/notes.org",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/notes.org?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/b6ad5b619d7f4848db1dd049fe3b1891889f6fb9",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/notes.org"
+    }
+  },
+  {
+    "name": "tests.lua",
+    "path": "devops IN MINECRAFT/tests.lua",
+    "sha": "1dfb05f0a5c516a840fedcf958d62802c1f2c03c",
+    "size": 35,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/tests.lua?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/tests.lua",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/1dfb05f0a5c516a840fedcf958d62802c1f2c03c",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/tests.lua",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/tests.lua?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/1dfb05f0a5c516a840fedcf958d62802c1f2c03c",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/tests.lua"
+    }
+  },
+  {
+    "name": "websocket.lua",
+    "path": "devops IN MINECRAFT/websocket.lua",
+    "sha": "2208a7fd12f309d71cb80eaee21d9f838b3e27e2",
+    "size": 145,
+    "url": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/websocket.lua?ref=main",
+    "html_url": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/websocket.lua",
+    "git_url": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/2208a7fd12f309d71cb80eaee21d9f838b3e27e2",
+    "download_url": "https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT/websocket.lua",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT/websocket.lua?ref=main",
+      "git": "https://api.github.com/repos/faximilie/CC-CI-CD/git/blobs/2208a7fd12f309d71cb80eaee21d9f838b3e27e2",
+      "html": "https://github.com/faximilie/CC-CI-CD/blob/main/devops%20IN%20MINECRAFT/websocket.lua"
+    }
+  }
+]
+// GET https://api.github.com/repos/faximilie/CC-CI-CD/contents/devops%20IN%20MINECRAFT?ref=main
+// HTTP/1.1 200 OK
+// date: Wed, 30 Dec 2020 00:29:01 GMT
+// content-type: application/json; charset=utf-8
+// server: GitHub.com
+// status: 200 OK
+// cache-control: public, max-age=60, s-maxage=60
+// vary: Accept, Accept-Encoding, Accept, X-Requested-With, Accept-Encoding
+// etag: W/"f8d6f262d0d7d0f3fa2afce18b64ae6fa9489d3e"
+// last-modified: Wed, 30 Dec 2020 00:22:30 GMT
+// x-github-media-type: github.v3; format=json
+// access-control-expose-headers: ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset
+// access-control-allow-origin: *
+// strict-transport-security: max-age=31536000; includeSubdomains; preload
+// x-frame-options: deny
+// x-content-type-options: nosniff
+// x-xss-protection: 1; mode=block
+// referrer-policy: origin-when-cross-origin, strict-origin-when-cross-origin
+// content-security-policy: default-src 'none'
+// X-Ratelimit-Limit: 60
+// X-Ratelimit-Remaining: 57
+// X-Ratelimit-Reset: 1609291491
+// X-Ratelimit-Used: 3
+// Accept-Ranges: bytes
+// Content-Length: 716
+// X-GitHub-Request-Id: A4E0:7A84:30990A2:36B0B65:5FEBC9CD
+// Request duration: 0.415693s
+#+END_SRC
