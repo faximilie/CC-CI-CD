@@ -1,5 +1,17 @@
 -- Pull git.lua, websocket.lua and tests.lua
 -- Run them
+json = require "json"
+
+
+local function http_to_json(url)
+  local request, err = http.get(url)
+  if not request then error(err) end
+  -- Print the contents
+  output = json.decode(request.readAll())
+  request.close() -- Don't forget to close!
+end
+
+
 local function download_file(url)
   local request, err = http.get(url)
 
@@ -41,3 +53,7 @@ function split(haystack, needle)
     end
   end
 end
+
+print(http_to_json('https://api.github.com/repos/faximilie/CC-CI-CD/contents/'))
+
+
