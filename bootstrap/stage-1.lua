@@ -21,7 +21,7 @@ local function downloadFile(url, fileName)
 end
 
 
-local gitUrl = 'https://raw.githubusercontent.com/faximilie/CC-CI-CD/main/devops%20IN%20MINECRAFT'
+local gitUrl = 'https://raw.githubusercontent.com/faximilie/CC-CI-CD/main'
 
 for _,file in pairs(files) do
   local url = gitUrl .. file
