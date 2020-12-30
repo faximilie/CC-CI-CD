@@ -1,4 +1,5 @@
 -- Bunch of common functions I really don't want to litter the top of my files with
+local common = {}
 function common.http_get_json_decode(url)
   local request, err = http.get(url)
   if not request then error(err) end
@@ -6,3 +7,5 @@ function common.http_get_json_decode(url)
   request.close()
   return output
 end
+
+return common
