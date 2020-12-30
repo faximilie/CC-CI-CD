@@ -5,7 +5,8 @@
 local files = {
   '/bootstrap/stage-2.lua',
   '/libs/base64.lua',
-  '/libs/json.lua'
+  '/libs/json.lua',
+  '/libs/common.lua'
 }
 
 local function downloadFile(url, fileName)
