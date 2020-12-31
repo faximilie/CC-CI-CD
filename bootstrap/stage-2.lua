@@ -4,11 +4,22 @@ common = require "/libs/common"
 
 local args = {...}
 
+local function walkDir(url)
+  dirContents = common.httpGetJsonDecode(url)
+  for _,v in pairs(dirContents) do
+    if v['type'] == 'dir' then
+      walkDir(v['url'])
+    else
+      common.downloadFile(v['url'], v['path'])
+    end
+  end
+end
 
-local url = args[1]
 
+-- local url = args[1]
+local url = 'https://api.github.com/repos/faximilie/CC-CI-CD/contents?ref='
 local ref = args[2]
 
---common.http_get_json_decode('wew')
-print(url)
-print(ref)
+walkDir(url .. ref)
+
+-- common.http_get_json_decode('wew')
