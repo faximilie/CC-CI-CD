@@ -10,7 +10,6 @@ local function downloadGitB64(gitUrl, fileName)
   local file = fs.open(fileName, "w")
   file.write(content)
   file.close()
-  request.close()
 end
 
 local function walkDir(url)
