@@ -4,13 +4,23 @@ common = require "/libs/common"
 
 local args = {...}
 
+local function downloadGitB64(gitUrl, fileName)
+  local git = common.httpGetJsonDecode(gitUrl)
+  content = base64.decode(git['content'])
+  local file = fs.open(fileName, "w")
+  file.write(content)
+  file.close()
+  request.close()
+end
+
 local function walkDir(url)
-  dirContents = common.httpGetJsonDecode(url)
+  local dirContents = common.httpGetJsonDecode(url)
   for _,v in pairs(dirContents) do
     if v['type'] == 'dir' then
       walkDir(v['url'])
     else
-      common.downloadFile(v['download_url'], v['path'])
+      -- common.downloadFile(v['git_url'], v['path'])
+      downloadGitB64(v['git_url'], v['path'])
     end
   end
 end
