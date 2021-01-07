@@ -36,6 +36,7 @@ end
 function common.walkDir(url, prefix, auth)
   local auth = auth or nil
   local dirContents = common.httpGetJsonDecode(url)
+  local prefix = prefix or ''
   for _,v in pairs(dirContents) do
     if v['type'] == 'dir' then
       common.walkDir(v['url'], prefix, auth)
